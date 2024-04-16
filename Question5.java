@@ -1,4 +1,6 @@
 import java.util.Scanner;
+import java.util.ArrayList;
+import java.util.Collections;
 
 public class Question5
 {
@@ -25,8 +27,30 @@ public class Question5
      *     2
      * Hint: Use a loop to get input. Use another 2 loops to find the mode
      */
-     
+    ArrayList<Integer> numberList = new ArrayList<Integer>();
+    ArrayList<Integer> checkedNum = new ArrayList<Integer>();
     Scanner in = new Scanner(System.in);
+
+    int maxOccurenceTimes = -1;
+    int maxOccurenceNumber = -1;
+
+    int repetition = in.nextInt();
+
+    for (int i = 0; i < repetition; i++) {
+      int number = in.nextInt();
+      numberList.add(number);
+    }
+
+    for (int number : numberList) {
+      if (!checkedNum.contains(number)) {
+        int counter = Collections.frequency(numberList, number);
+        if (counter > maxOccurenceTimes) {
+          maxOccurenceTimes = counter;
+          maxOccurenceNumber = number;
+        }
+      }
+    }
+    System.out.println(maxOccurenceNumber);
     
   }
 }
